@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Tracking System</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Application Tracking System</h1>
+        <form method="post" enctype="multipart/form-data">
+            <label for="resume"><strong>Upload Resume (PDF):</strong></label>
+            <input type="file" id="resume" name="resume" accept=".pdf" required><br><br>
+
+            <label for="job_description"><strong>Paste Job Description:</strong></label>
+            <textarea id="job_description" name="job_description" rows="6" required></textarea><br><br>
+
+            <button type="submit">Check</button>
+        </form>
+
+        {% if result %}
+        <div class="result">
+            <h2>Results</h2>
+            <p><strong>Match Percentage:</strong> {{ result.match_percentage }}%</p>
+            <p><strong>Matched Keywords:</strong> {{ result.matched_keywords | join(", ") }}</p>
+            <p><strong>Suggestions for Improvement:</strong> {{ result.suggestions }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
